@@ -11,4 +11,5 @@ export const ToolsList = [
   { id: 10, name: "Power", icon: "💡", link: "/power" },
   { id: 11, name: "Pressure", icon: "🌬️", link: "/pressure" },
   { id: 12, name: "Fuel Efficiency", icon: "⛽", link: "/fuel-efficiency" },
+  { id: 13, name: "Market", icon: "📈", link: "/market" },
 ];
