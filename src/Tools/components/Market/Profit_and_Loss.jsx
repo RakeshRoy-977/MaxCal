@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { inputClassNames, labelClassNames } from "../style";
 
 const Profit_and_Loss = () => {
   const [Data, setData] = useState({ buying: 0, selling: 0, qty: 0 });
@@ -58,30 +59,43 @@ const Profit_and_Loss = () => {
           onSubmit={handleSubmit}
           className=" flex flex-col justify-center items-center gap-3"
         >
-          <input
-            className="border border-gray-400 rounded-lg px-4 py-2 focus:outline-none focus:border-blue-500 mr-2"
-            type="number"
-            name="buying"
-            value={Info ? Data.buying : ""}
-            placeholder="Enter buying Price"
-            onChange={handelChange}
-          />
-          <input
-            className="border border-gray-400 rounded-lg px-4 py-2 focus:outline-none focus:border-blue-500 mr-2"
-            type="number"
-            name="selling"
-            value={Info ? Data.selling : ""}
-            placeholder="Enter selling Price"
-            onChange={handelChange}
-          />
-          <input
-            className="border border-gray-400 rounded-lg px-4 py-2 focus:outline-none focus:border-blue-500 mr-2"
-            type="number"
-            name="qty"
-            placeholder="Enter Qty"
-            value={Info ? Data.qty : ""}
-            onChange={handelChange}
-          />
+          <div className="relative flex h-10 w-full min-w-[200px] max-w-[24rem]">
+            <input
+              type="number"
+              onChange={handelChange}
+              name="buying"
+              value={Data.buying === 0 ? "" : Data.buying}
+              className={inputClassNames}
+              placeholder=" "
+              required
+            />
+            <label className={labelClassNames}>Buying Price</label>
+          </div>
+          <div className="relative flex h-10 w-full min-w-[200px] max-w-[24rem]">
+            <input
+              type="number"
+              onChange={handelChange}
+              name="selling"
+              value={Data.selling === 0 ? "" : Data.selling}
+              className={inputClassNames}
+              placeholder=" "
+              required
+            />
+            <label className={labelClassNames}>Selling Price</label>
+          </div>
+          <div className="relative flex h-10 w-full min-w-[200px] max-w-[24rem]">
+            <input
+              type="number"
+              onChange={handelChange}
+              name="qty"
+              value={Data.qty === 0 ? "" : Data.qty}
+              className={inputClassNames}
+              placeholder=" "
+              required
+            />
+            <label className={labelClassNames}>Qty</label>
+          </div>
+
           <div className="flex gap-5 items-center">
             <button
               type="submit"

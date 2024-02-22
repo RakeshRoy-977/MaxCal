@@ -1,7 +1,13 @@
 import React, { useState } from "react";
+import { inputClassNames, labelClassNames } from "../style";
 
 const Average_Cost = () => {
-  const [Data, setData] = useState({ buying: 0, selling: 0, qty: 0 });
+  const [Data, setData] = useState({
+    First_Qty: 0,
+    First_Price: 0,
+    Second_Qty: 0,
+    Second_Price: 0,
+  });
   const [Info, setInfo] = useState(false);
 
   const handleSubmit = (e) => {
@@ -11,7 +17,7 @@ const Average_Cost = () => {
   };
   const handelReset = () => {
     setInfo(false);
-    setData({ buying: 0, selling: 0, qty: 0 });
+    setData({ First_Qty: 0, First_Price: 0, Second_Qty: 0, Second_Price: 0 });
   };
   const handelChange = (e) => {
     const { name, value } = e.target;
@@ -20,34 +26,22 @@ const Average_Cost = () => {
 
   return (
     <div className=" flex flex-col justify-center h-[80vh]  m-5 p-2">
-      <h1 className="text-center text-3xl mb-5">Profit & Loss Calculator</h1>
+      <h1 className="text-center text-3xl mb-5">Average Cost</h1>
+
       <div className=" flex items-start justify-center w-[80vw] gap-10 m-2 p-2">
         {Info && (
           <div className="stats stats-vertical lg:stats-horizontal shadow mt-6">
             <div className="stat">
-              <div className="stat-title">Buy Price</div>
-              <div className="stat-value">{Data.buying}</div>
-            </div>
-
-            <div className="stat">
-              <div className="stat-title">Sell Price</div>
-              <div className="stat-value">{Data.selling}</div>
-            </div>
-
-            <div className="stat">
               <div className="stat-title">Total investment</div>
-              <div className="stat-value">{Data.buying * Data.qty}</div>
+              <div className="stat-value">
+                {+Data.First_Qty * +Data.First_Price +
+                  +Data.Second_Qty * +Data.Second_Price}
+              </div>
             </div>
             <div className="stat">
-              <div className="stat-title">Result</div>
-              <div
-                className={
-                  Data.selling * Data.qty - Data.buying * Data.qty < 0
-                    ? "stat-value text-red-400"
-                    : "stat-value text-green-400"
-                }
-              >
-                {Data.selling * Data.qty - Data.buying * Data.qty}
+              <div className="stat-title">Avg Price</div>
+              <div className="stat-value">
+                {(+Data.First_Price + +Data.Second_Price) / 2}
               </div>
             </div>
           </div>
@@ -57,30 +51,55 @@ const Average_Cost = () => {
           onSubmit={handleSubmit}
           className=" flex flex-col justify-center items-center gap-3"
         >
-          <input
-            className="border border-gray-400 rounded-lg px-4 py-2 focus:outline-none focus:border-blue-500 mr-2"
-            type="number"
-            name="buying"
-            value={Info ? Data.buying : ""}
-            placeholder="Enter buying Price"
-            onChange={handelChange}
-          />
-          <input
-            className="border border-gray-400 rounded-lg px-4 py-2 focus:outline-none focus:border-blue-500 mr-2"
-            type="number"
-            name="selling"
-            value={Info ? Data.selling : ""}
-            placeholder="Enter selling Price"
-            onChange={handelChange}
-          />
-          <input
-            className="border border-gray-400 rounded-lg px-4 py-2 focus:outline-none focus:border-blue-500 mr-2"
-            type="number"
-            name="qty"
-            placeholder="Enter Qty"
-            value={Info ? Data.qty : ""}
-            onChange={handelChange}
-          />
+          <div className="relative flex h-10 w-full min-w-[200px] max-w-[24rem]">
+            <input
+              type="number"
+              onChange={handelChange}
+              name="First_Qty"
+              value={Data.First_Qty === 0 ? "" : Data.First_Qty}
+              className={inputClassNames}
+              placeholder=" "
+              required
+            />
+            <label className={labelClassNames}>First Qty</label>
+          </div>
+          <div className="relative flex h-10 w-full min-w-[200px] max-w-[24rem]">
+            <input
+              type="number"
+              onChange={handelChange}
+              name="First_Price"
+              value={Data.First_Price === 0 ? "" : Data.First_Price}
+              className={inputClassNames}
+              placeholder=" "
+              required
+            />
+            <label className={labelClassNames}>First Price</label>
+          </div>
+          <div className="relative flex h-10 w-full min-w-[200px] max-w-[24rem]">
+            <input
+              type="number"
+              onChange={handelChange}
+              name="Second_Qty"
+              value={Data.Second_Qty === 0 ? "" : Data.Second_Qty}
+              className={inputClassNames}
+              placeholder=" "
+              required
+            />
+            <label className={labelClassNames}>Second Qty</label>
+          </div>
+          <div className="relative flex h-10 w-full min-w-[200px] max-w-[24rem]">
+            <input
+              type="number"
+              onChange={handelChange}
+              name="Second_Price"
+              value={Data.Second_Price === 0 ? "" : Data.Second_Price}
+              className={inputClassNames}
+              placeholder=" "
+              required
+            />
+            <label className={labelClassNames}>Second Price</label>
+          </div>
+
           <div className="flex gap-5 items-center">
             <button
               type="submit"
@@ -88,6 +107,7 @@ const Average_Cost = () => {
             >
               Submit
             </button>
+
             {Info && (
               <button className="btn btn-square" onClick={handelReset}>
                 <svg

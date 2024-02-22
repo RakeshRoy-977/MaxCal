@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import SideBar from "../Components/SideBar";
 import { ToolsList } from "../ToolsList";
 import Profit_and_Loss from "./components/Market/Profit_and_Loss";
