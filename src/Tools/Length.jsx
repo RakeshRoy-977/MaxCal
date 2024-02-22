@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 const Length = () => {
   const [fromUnit, setFromUnit] = useState("km");
@@ -93,6 +93,15 @@ const Length = () => {
     },
   };
 
+  useEffect(() => {
+    if (fromUnit === toUnit) {
+      const options = Object.keys(conversionFactors[fromUnit]).filter(
+        (unit) => unit !== fromUnit
+      );
+      setToUnit(options[0]);
+    }
+  }, [fromUnit, toUnit, conversionFactors]);
+
   const handleConvert = () => {
     if (!value.trim()) {
       setError("Please enter a value.");
@@ -181,7 +190,7 @@ const Length = () => {
       )}
       {result && (
         <div className="mt-4 text-center">
-          <p className="text-gray-800">{result}</p>
+          <p>{result}</p>
         </div>
       )}
     </div>
