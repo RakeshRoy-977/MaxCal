@@ -5,6 +5,18 @@ const Length = () => {
   const [toUnit, setToUnit] = useState("m");
   const [value, setValue] = useState("");
   const [result, setResult] = useState("");
+  const [error, setError] = useState("");
+
+  const unitLabels = {
+    km: "Kilometers",
+    m: "Meters",
+    cm: "Centimeters",
+    mm: "Millimeters",
+    mi: "Miles",
+    yd: "Yards",
+    ft: "Feet",
+    in: "Inches",
+  };
 
   const conversionFactors = {
     km: {
@@ -82,19 +94,37 @@ const Length = () => {
   };
 
   const handleConvert = () => {
-    const convertedValue = (
-      parseFloat(value) * conversionFactors[fromUnit][toUnit]
-    ).toFixed(2);
-    setResult(convertedValue);
+    if (!value.trim()) {
+      setError("Please enter a value.");
+      return;
+    }
+
+    const convertedValue =
+      parseFloat(value) * conversionFactors[fromUnit][toUnit];
+    const roundedResult = Math.round(convertedValue * 100) / 100;
+
+    if (roundedResult % 1 === 0) {
+      setResult(
+        `${value} ${unitLabels[fromUnit]} = ${roundedResult} ${unitLabels[toUnit]}`
+      );
+    } else {
+      setResult(
+        `${value} ${unitLabels[fromUnit]} = ${roundedResult.toFixed(2)} ${
+          unitLabels[toUnit]
+        }`
+      );
+    }
+    setError("");
   };
 
   const handleReset = () => {
     setValue("");
     setResult("");
+    setError("");
   };
 
   return (
-    <div className="mx-auto  p-4 flex flex-col ">
+    <div className="mx-auto w-80 p-4">
       <h2 className="text-2xl font-bold mb-4 text-center">Length Converter</h2>
       <div className="flex items-center mb-4 justify-center">
         <input
@@ -111,7 +141,7 @@ const Length = () => {
         >
           {Object.keys(conversionFactors).map((unit) => (
             <option key={unit} value={unit}>
-              {unit}
+              {unit} ({unitLabels[unit]})
             </option>
           ))}
         </select>
@@ -123,7 +153,7 @@ const Length = () => {
         >
           {Object.keys(conversionFactors[fromUnit]).map((unit) => (
             <option key={unit} value={unit}>
-              {unit}
+              {unit} ({unitLabels[unit]})
             </option>
           ))}
         </select>
@@ -142,9 +172,14 @@ const Length = () => {
           Reset
         </button>
       </div>
+      {error && (
+        <div className="mt-4 text-red-500 text-center">
+          <p>{error}</p>
+        </div>
+      )}
       {result && (
         <div className="mt-4 text-center">
-          <p className="text-gray-800">Result: {result}</p>
+          <p className="text-gray-800">{result}</p>
         </div>
       )}
     </div>
