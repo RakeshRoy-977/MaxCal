@@ -1,8 +1,20 @@
-# React + Vite
+# MaxCal
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+MaxCal is a comprehensive unit converter application built using React.js. It allows users to convert various units across different categories including Length, Area, Volume, Mass/Weight, Temperature, Speed, Time, Energy, Power, and Pressure.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Convert units across multiple categories.
+- Simple and intuitive user interface.
+- Support for reverse conversions.
+- Error handling for invalid inputs.
+- Easily customizable and extendable.
+
+## Installation
+
+To run MaxCal locally on your machine, follow these steps:
+
+git clone https://github.com/RakeshRoy-977/MaxCal
+cd MaxCal
+npm install
+npm run dev
