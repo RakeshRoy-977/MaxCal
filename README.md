@@ -14,7 +14,7 @@ MaxCal is a comprehensive unit converter application built using React.js. It al
 
 To run MaxCal locally on your machine, follow these steps:
 
-git clone https://github.com/RakeshRoy-977/MaxCal
-cd MaxCal
-npm install
-npm run dev
+- git clone https://github.com/RakeshRoy-977/MaxCal
+- cd MaxCal
+- npm install
+- npm run dev
