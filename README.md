@@ -2,6 +2,8 @@
 
 MaxCal is a comprehensive unit converter application built using React.js. It allows users to convert various units across different categories including Length, Area, Volume, Mass/Weight, Temperature, Speed, Time, Energy, Power, and Pressure.
 
+![MaxCal](./public/MaxCal.png)
+
 ## Features
 
 - Convert units across multiple categories.
