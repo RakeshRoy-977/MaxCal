@@ -23,7 +23,7 @@ const Profit_and_Loss = () => {
     <div className=" flex flex-col justify-center h-[80vh]  m-5 p-2">
       <h1 className="text-center text-3xl mb-5">Profit & Loss Calculator</h1>
 
-      <div className=" flex items-start justify-center w-[80vw] gap-10 m-2 p-2">
+      <div className=" flex items-start justify-center  gap-10 m-2 p-2">
         {Info && (
           <div className="stats stats-vertical lg:stats-horizontal shadow mt-6">
             <div className="stat">

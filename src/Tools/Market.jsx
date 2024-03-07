@@ -7,28 +7,20 @@ const MarketData = ToolsList.find((x) => x.name === "Market");
 
 const Market = () => {
   return (
-    <div className="flex">
-      <div className="w-[300px] sticky top-10 h-full">
-        {MarketData.tools.map((x, i) => (
-          <SideBar key={i} data={x} />
-        ))}
+    <div className="">
+      <div id="1">
+        <Profit_and_Loss />
       </div>
-
-      <div className="">
-        <div id="1">
-          <Profit_and_Loss />
-        </div>
-        <div className="flex flex-col w-[70vw] m-auto">
-          <div className="divider">Next</div>
-        </div>
-        <div id="2">
-          <Average_Cost />
-        </div>
-        <div className="flex flex-col w-[70vw] m-auto">
-          <div className="divider">Next</div>
-        </div>
-        <div id="3"></div>
+      <div className="flex flex-col m-auto">
+        <div className="divider">Next</div>
       </div>
+      <div id="2">
+        <Average_Cost />
+      </div>
+      <div className="flex flex-col m-auto">
+        <div className="divider">Next</div>
+      </div>
+      <div id="3"></div>
     </div>
   );
 };
